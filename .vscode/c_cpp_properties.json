@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/nuke/ros2_ws/install/sac_interfaces/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/nuke/ros2_ws/src/sac_interfaces/include/**",
+        "/home/nuke/ros2_ws/src/sac_localization/include/**",
+        "/home/nuke/ros2_ws/src/sac_network/include/**",
+        "/home/nuke/ros2_ws/src/sac_perception/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

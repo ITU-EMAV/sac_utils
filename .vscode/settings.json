@@ -1,0 +1,24 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/nuke/ros2_ws/install/sdc_serial/lib/python3.10/site-packages",
+        "/home/nuke/ros2_ws/install/sdc_global_planner/lib/python3.10/site-packages",
+        "/home/nuke/ros2_ws/install/sac_trajectory_tracking/lib/python3.10/site-packages",
+        "/home/nuke/ros2_ws/install/sac_trajectory_planning/lib/python3.10/site-packages",
+        "/home/nuke/ros2_ws/install/sac_perception_py/lib/python3.10/site-packages",
+        "/home/nuke/ros2_ws/install/sac_interfaces/local/lib/python3.10/dist-packages",
+        "/home/nuke/ros2_ws/install/gazebo_project/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/nuke/ros2_ws/install/sdc_serial/lib/python3.10/site-packages",
+        "/home/nuke/ros2_ws/install/sdc_global_planner/lib/python3.10/site-packages",
+        "/home/nuke/ros2_ws/install/sac_trajectory_tracking/lib/python3.10/site-packages",
+        "/home/nuke/ros2_ws/install/sac_trajectory_planning/lib/python3.10/site-packages",
+        "/home/nuke/ros2_ws/install/sac_perception_py/lib/python3.10/site-packages",
+        "/home/nuke/ros2_ws/install/sac_interfaces/local/lib/python3.10/dist-packages",
+        "/home/nuke/ros2_ws/install/gazebo_project/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
