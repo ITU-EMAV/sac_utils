@@ -12,10 +12,9 @@ from tf_transformations import (
 )
 import numpy as np
 
-# transform the pose with given transformation
-
 
 def pose_to_matrix(pose: Pose) -> np.ndarray:
+    # do not use outside of this file
     quat_np = np.array(
         [
             pose.orientation.x,
@@ -33,6 +32,7 @@ def pose_to_matrix(pose: Pose) -> np.ndarray:
 
 
 def transform_to_matrix(transform: TransformStamped) -> np.ndarray:
+    # do not use outside of this file
     quat_np = np.array(
         [
             transform.transform.rotation.x,
@@ -54,26 +54,35 @@ def transform_to_matrix(transform: TransformStamped) -> np.ndarray:
 
 
 def transform_pose(pose: Pose, transform: TransformStamped) -> Pose:
+    # transforms the pose by the transform
+    transformed_pose = Pose()
     pose_ = pose_to_matrix(pose)
     transform_ = transform_to_matrix(transform)
     transformed_matrix = np.matmul(transform_, pose_)
     qx, qy, qz, qw = quaternion_from_matrix(transformed_matrix)
     x, y, z = translation_from_matrix(transformed_matrix)
-    pose.position.x = x
-    pose.position.y = y
-    pose.position.z = z
-    pose.orientation.x = qx
-    pose.orientation.y = qy
-    pose.orientation.z = qz
-    pose.orientation.w = qw
-    return pose
+    transformed_pose.position.x = x
+    transformed_pose.position.y = y
+    transformed_pose.position.z = z
+    transformed_pose.orientation.x = qx
+    transformed_pose.orientation.y = qy
+    transformed_pose.orientation.z = qz
+    transformed_pose.orientation.w = qw
+    return transformed_pose
 
 
 def transform_path(path: Path, transform: TransformStamped) -> Path:
+    # transforms the path by the transform
     for i in range(len(path.poses)):
         path.poses[i].pose = transform_pose(path.poses[i].pose, transform)
 
     return path
+
+
+def move_point_along_line(point, angle, distance):
+    new_x = point[0] + distance * np.cos(angle)
+    new_y = point[1] + distance * np.sin(angle)
+    return new_x, new_y
 
 
 if __name__ == "__main__":
