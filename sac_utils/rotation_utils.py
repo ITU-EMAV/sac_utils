@@ -71,12 +71,37 @@ def transform_pose(pose: Pose, transform: TransformStamped) -> Pose:
     return transformed_pose
 
 
+def transform_pose_from_transform_matrix(pose: Pose, transform_) -> Pose:
+    # transforms the pose by the transform matrix
+    transformed_pose = Pose()
+    pose_ = pose_to_matrix(pose)
+    transformed_matrix = np.matmul(transform_, pose_)
+    qx, qy, qz, qw = quaternion_from_matrix(transformed_matrix)
+    x, y, z = translation_from_matrix(transformed_matrix)
+    transformed_pose.position.x = x
+    transformed_pose.position.y = y
+    transformed_pose.position.z = z
+    transformed_pose.orientation.x = qx
+    transformed_pose.orientation.y = qy
+    transformed_pose.orientation.z = qz
+    transformed_pose.orientation.w = qw
+    return transformed_pose
+
+
 def transform_path(path: Path, transform: TransformStamped) -> Path:
     # transforms the path by the transform
-    for i in range(len(path.poses)):
-        path.poses[i].pose = transform_pose(path.poses[i].pose, transform)
+    path_ = Path()
+    path_.header = path.header
+    transform_ = transform_to_matrix(transform)
+    for i in range(0, len(path.poses)):
+        ps = PoseStamped()
+        ps.header = path_.header
+        ps.pose = transform_pose_from_transform_matrix(
+            path.poses[i].pose, transform_)
 
-    return path
+        path_.poses.append(ps)
+
+    return path_
 
 
 def move_point_along_line(point, angle, distance):
